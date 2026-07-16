@@ -6,7 +6,8 @@ A live, visual rate limiter demo built with Next.js, TypeScript, Tailwind CSS, a
 
 ## Live demo
 
-Deploy to [Vercel](https://vercel.com) and add Upstash env vars (see [Setup](#setup)).
+https://rate-limiter-five-blush.vercel.app/
+
 
 ## Architecture
 
