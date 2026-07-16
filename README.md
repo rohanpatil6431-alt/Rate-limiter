@@ -65,7 +65,7 @@ Divides time into fixed buckets (e.g. minute 0:00–0:59). Each bucket has a cou
 | O(1) memory per client | **Boundary burst**: 10 req/min can allow 20 at the window edge |
 | Simple, fast | Less accurate than sliding window |
 
-**Interview talking point:** Great when approximate limiting is fine and you want minimal Redis ops.
+**Great when approximate limiting is fine and you want minimal Redis ops.**
 
 ### Sliding Window
 
@@ -76,7 +76,7 @@ Stores request timestamps in a Redis sorted set. On each check, prune entries ol
 | Accurate rolling limit | O(n) memory per client (one entry per request in window) |
 | No boundary burst problem | More Redis operations per request |
 
-**Interview talking point:** Use when fairness matters more than memory — e.g. strict API quotas.
+**Use when fairness matters more than memory — e.g. strict API quotas.**
 
 ### Token Bucket
 
@@ -87,7 +87,7 @@ Stores `{ tokens, lastRefill }` in a Redis hash. Tokens refill continuously at `
 | Smooth burst handling | Slightly more complex refill math |
 | Allows controlled bursts | Tunable via burst vs refill rate |
 
-**Interview talking point:** Ideal for APIs that should tolerate short bursts (mobile clients, batch uploads) while maintaining average throughput.
+**Ideal for APIs that should tolerate short bursts (mobile clients, batch uploads) while maintaining average throughput.**
 
 ## Strategy pattern
 
@@ -197,7 +197,3 @@ src/
 - **Distributed multi-region rate limiting** — current design uses a single Upstash region; global apps would need synchronized counters or regional buckets with sync (e.g. Redis CRDTs, or a central coordination layer).
 - **Persistent analytics** — session-only chart data today; could stream to TimescaleDB or ClickHouse for historical dashboards.
 - **Leaky bucket / sliding window counter** — hybrid algorithms for memory-efficient sliding approximations.
-
-## License
-
-MIT
